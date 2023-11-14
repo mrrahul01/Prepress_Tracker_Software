@@ -268,40 +268,7 @@
     
                 <style id="css-style"></style>
     
-                <!-- <script>
-                // Get the textarea element.
-                const textarea1 = document.getElementById('textarea');
-    
-                // Get the CSS style element.
-                const cssStyleElement = document.getElementById('css-style');
-    
-                // Initialize the number of rows in the textarea.
-                let rows1 = 3;
-    
-                // Set the initial CSS style for the textarea.
-                cssStyleElement.textContent = `
-                textarea {
-                  height: ${rows1 * 15}px;
-                }`;
-    
-                // Add an event listener to the textarea to detect changes in the user's input.
-                textarea.addEventListener('input', () => {
-                  // Split the user's input into lines.
-                  const lines = textarea.value.split('\n');
-    
-                  // Update the number of rows in the textarea based on the number of lines.
-                  rows1 = Math.min(lines.length, 25);
-    
-                  // Update the CSS style for the textarea.
-                  cssStyleElement.textContent = `
-                textarea {
-                  height: ${rows1 * 15}px;
-                }`;
-    
-                  // Resize the textarea.
-                  textarea.style.height = `${rows1 * 15}px`;
-                });
-                </script> -->
+                
                         </div>
                           <button class="btn btn-primary d-grid w-100">
                             Submit Orders
@@ -422,40 +389,44 @@
   <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
   <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
   <script src="../../assets/vendor/js/menu.js"></script>
-  <script>
-    // Get the textarea element.
-    const textarea = document.getElementById('textarea');
-
+  
+  <script>// Get all textarea elements with the class "form-control" and the id "textarea".
+    const textareas = document.querySelectorAll('textarea.form-control#textarea');
+    
     // Get the CSS style element.
     const cssStyleElement = document.getElementById('css-style');
-
-    // Initialize the number of rows in the textarea.
+    
+    // Initialize the number of rows in the textareas.
     let rows = 3;
-
-    // Set the initial CSS style for the textarea.
+    
+    // Set the initial CSS style for the textareas.
     cssStyleElement.textContent = `
-    textarea {
+    textarea.form-control#textarea {
       height: ${rows * 15}px;
     }`;
-
-    // Add an event listener to the textarea to detect changes in the user's input.
-    textarea.addEventListener('input', () => {
-      // Split the user's input into lines.
-      const lines = textarea.value.split('\n');
-
-      // Update the number of rows in the textarea based on the number of lines.
-      rows = Math.min(lines.length, 25);
-
-      // Update the CSS style for the textarea.
-      cssStyleElement.textContent = `
-    textarea {
-      height: ${rows * 15}px;
-    }`;
-
-      // Resize the textarea.
-      textarea.style.height = `${rows * 15}px`;
+    
+    // Add an event listener to all textareas to detect changes in the user's input.
+    textareas.forEach(textarea => {
+      textarea.addEventListener('input', () => {
+        // Split the user's input into lines.
+        const lines = textarea.value.split('\n');
+    
+        // Update the number of rows in the textarea based on the number of lines.
+        rows = Math.min(lines.length, 25);
+    
+        // Update the CSS style for the textarea.
+        cssStyleElement.textContent = `
+      textarea.form-control#textarea {
+        height: ${rows * 15}px;
+      }`;
+    
+        // Resize the textarea.
+        textarea.style.height = `${rows * 15}px`;
+      });
     });
     </script>
+  
+  
   
   <!-- endbuild -->
 
