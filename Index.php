@@ -270,7 +270,7 @@
     
                 
                         </div>
-                          <button class="btn btn-primary d-grid w-100">
+                          <button class="btn btn-primary d-grid w-100" input type="submit" name="dj_received" value="dj_received">
                             Submit Orders
                           </button>
                           <!-- <button class="btn btn-outline-primary waves-effect" type="button">Track Orders</button> -->
@@ -290,7 +290,7 @@
                     <div class="form-password-toggle">
                       <div class="input-group input-group-merge">
                         <div class="form-floating form-floating-outline">
-                          <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                          <input type="password" id="password" class="form-control" name="password" placeholder="Input Paaword;" aria-describedby="password" />
                           <label for="password">Password</label>
                         </div>
                         <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>

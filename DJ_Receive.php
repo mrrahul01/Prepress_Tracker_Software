@@ -1,58 +1,50 @@
 <?php
-// Database connection parameters
+
+// Define database connection details
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "DJ_Receive";
+$dbname = "prepresstracker";
 
-// Create a connection to MySQL
+// Connect to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the barcode data from the form
-$barcodes = $_POST['barcodes'];
+// Define variables
+$dj_numbers = $_POST['dj_number'];; // Your multi-line string
+$product_line = ($_POST['product_line']);
+$received_by = $_POST['received_by'];
 
-// Split the barcode data into an array (assuming each barcode is separated by a newline)
-$barcodeArray = explode("\n", $barcodes);
+// Explode the multi-line string into an array
+$numbers = explode("\r\n", $dj_numbers);
 
-// Initialize a query to insert the barcodes using prepared statements
-$query = "INSERT INTO barcodes (barcode) VALUES (?)";
+// Loop through each DJ number
+foreach ($numbers as $number) {
 
-// Prepare the statement
-$stmt = $conn->prepare($query);
+    // Prepare SQL query
+    $sql = "INSERT INTO dj_receive_table (DJ_No, product_line, received_by) VALUES (?, ?, ?)";
 
-if (!$stmt) {
-    die("Error in preparing statement: " . $conn->error);
+    // Prepare statement
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("sss", $number, $product_line, $received_by);
+
+    // Execute statement
+    $stmt->execute();
+
+    // Get the auto-incremented ID
+    $id = $conn->insert_id;
+
+    // Print the result
+    echo "ID='" . $id . "', dj_numbers='" . $number . "' product_line ='" . $product_line . "' received_by ='" . $received_by . "'" . PHP_EOL;
 }
 
-// Bind the parameter
-$stmt->bind_param("s", $barcodeValue);
-
-// Loop through the barcode array and execute the prepared statement
-foreach ($barcodeArray as $barcode) {
-    $barcodeValue = trim($barcode); // Remove any extra whitespace
-    
-    // Execute the statement
-    if (!$stmt->execute()) {
-        echo "Error inserting barcode: " . $stmt->error;
-        break; // Stop the loop on the first error
-    }
-}
-
-// Close the prepared statement
-$stmt->close();
-
-// Check for errors during the entire process
-if ($conn->error) {
-    echo "Error: " . $conn->error;
-} else {
-    echo "Barcodes inserted successfully.";
-}
-
-// Close the database connection
+// Close connection
 $conn->close();
+
 ?>
