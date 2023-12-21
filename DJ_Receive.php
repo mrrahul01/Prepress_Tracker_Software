@@ -1,18 +1,6 @@
 <?php
 
-// Define database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "prepresstracker";
-
-// Connect to the database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require 'link.php';
 
 // Define variables
 $dj_numbers = $_POST['dj_number'];; // Your multi-line string
@@ -41,7 +29,8 @@ foreach ($numbers as $number) {
     $id = $conn->insert_id;
 
     // Print the result
-    echo "ID='" . $id . "', dj_numbers='" . $number . "' product_line ='" . $product_line . "' received_by ='" . $received_by . "'" . PHP_EOL;
+    // echo "ID='" . $id . "', dj_numbers='" . $number . "' product_line ='" . $product_line . "' received_by ='" . $received_by . "'" . PHP_EOL;
+    header("Location: http://localhost/Prepress_Tracker_Software/Prepress_Tracker_Software/track_Orders.php");
 }
 
 // Close connection
