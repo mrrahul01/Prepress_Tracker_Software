@@ -23,11 +23,11 @@ require 'link.php';
     
     
     <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-5DDHKGP');</script>
+      })(window,document,'script','dataLayer','GTM-5DDHKGP');</script> -->
     <!-- End Google Tag Manager -->
     
     <!-- Favicon -->
@@ -174,7 +174,7 @@ require 'link.php';
 <!-- Basic Bootstrap Table -->
 <div class="card"> 
   <!-- <div class="container"> -->
-    <h5 class="card-header">Contextual Classes</h5>
+    <h5 class="card-header">All Orders Details</h5>
     <div class="table-responsive text-nowrap">
     <!-- <div class=""> -->
       <table class="table">
@@ -196,7 +196,7 @@ require 'link.php';
           </tr>
         </thead>
         <?php 
-							 	$stmt = $conn->prepare("SELECT * FROM dj_receive_table");
+							 	$stmt = $conn->prepare("SELECT * FROM dj_receive_table, oracle_data WHERE DJ_No= Discrete_Job ");
 							 
                  $stmt->execute();
 
@@ -223,11 +223,21 @@ require 'link.php';
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      
+            <h4>DJ Received Date: <?php echo $num['received_by']; ?></h4>
+            <h4>Received By</h4>
+            <h4>DJ</h4>
+            <h4>SoLine</h4>
+            <h4>Label Ref</h4>
+            <h4>RBO</h4>
+            <h4>Designed by</h4>
+            <h4>Remarks_Design</h4>
+            <h4>Design Date</h4>
+            <h4>Coustomer Name</h4>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
@@ -243,11 +253,11 @@ require 'link.php';
             <td><?php echo $num['DJ_No']; ?></td>
             
             <td>
-            <?php echo $num['DJ_No']; ?>
+            <?php echo $num['SO_Line']; ?>
             </td>
-            <td><?php echo $num['product_line']; ?></td>
+            <td><?php echo $num['Item']; ?></td>
             
-            <td><?php echo $num['received_by']; ?></td>
+            <td><?php echo $num['RBO']; ?></td>
             <td>
             <?php echo $num['DJ_No']; ?>
             </td>
@@ -257,7 +267,7 @@ require 'link.php';
             <?php echo $num['DJ_No']; ?>
             </td>
             <td>
-            <?php echo $num['DJ_No']; ?>
+            <?php echo $num['Customer']; ?>
             </td>
           </tr>
          
