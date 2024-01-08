@@ -66,6 +66,7 @@ require 'link.php';
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="assets/js/config.js"></script>
     
+    
 </head>
 
 <body>
@@ -93,7 +94,7 @@ require 'link.php';
     
 
     <!-- Layout container -->
-    <div class="layout-page">
+    <!-- <div class="layout-page"> -->
       
       
 
@@ -101,7 +102,7 @@ require 'link.php';
 
 <!-- Navbar -->
 
-<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+<!-- <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
   
 
   
@@ -121,7 +122,7 @@ require 'link.php';
       <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
         
-        <!-- Search -->
+       Search 
         <div class="navbar-nav align-items-center">
           <div class="nav-item navbar-search-wrapper mb-0">
             <a class="nav-item nav-link search-toggler fw-normal px-0" href="javascript:void(0);">
@@ -130,7 +131,7 @@ require 'link.php';
             </a>
           </div>
         </div>
-        <!-- /Search -->
+     /Search 
         
         
 
@@ -140,7 +141,7 @@ require 'link.php';
       </div>
 
       
-      <!-- Search Small Screens -->
+ Search Small Screens 
       <div class="navbar-search-wrapper search-input-wrapper  d-none">
         <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..." aria-label="Search...">
         <i class="mdi mdi-close search-toggler cursor-pointer"></i>
@@ -148,7 +149,7 @@ require 'link.php';
       
       
   
-</nav>
+</nav> -->
 
 <!-- / Navbar -->
 
@@ -156,14 +157,17 @@ require 'link.php';
 
       <!-- Content wrapper -->
       <div class="content-wrapper">
+      <!-- <div class="card-group card-group-scroll" style="overflow: auto; max-height: 700px; max-width: 600px"> -->
+
 
         <!-- Content -->
-        
-          <div class="container-xxl flex-grow-1 container-p-y">
+       
             
             
-
+         
 <div class="card-body">
+<div class="native-scrollbar native-scrollbar-ltr native-scrollbar-x" style="width: 1000px; left: 45.5556px; top: 432px;"><div style="width: 2496px; height: 1px;">
+          <div class="container-xxl flex-grow-1 container-p-y">
 
     For Receive/Release page  <a href="index.html">Click here
     <i class="mdi mdi-account mdi-36px"></i>
@@ -172,13 +176,14 @@ require 'link.php';
   </div>
 
 <!-- Basic Bootstrap Table -->
+
 <div class="card"> 
   <!-- <div class="container"> -->
     <h5 class="card-header">All Orders Details</h5>
     <div class="table-responsive text-nowrap">
     <!-- <div class=""> -->
       <table class="table">
-        <thead>
+        <thead style="position: sticky;">
           <tr>
             <th>Actions</th>
             <th>DJ Received Date</th>
@@ -287,6 +292,7 @@ require 'link.php';
       </table>
     </div>
   </div>
+  </div>
 <!--/ Basic Bootstrap Table -->
 
 <hr class="my-5">
@@ -325,6 +331,8 @@ require 'link.php';
     <!-- Drag Target Area To SlideIn Menu On Small Screens -->
     <div class="drag-target"></div>
     
+  </div>
+  </div>
   </div>
   <!-- / Layout wrapper -->
 
