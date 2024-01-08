@@ -169,7 +169,7 @@ require 'link.php';
 <div class="native-scrollbar native-scrollbar-ltr native-scrollbar-x" style="width: 1000px; left: 45.5556px; top: 432px;"><div style="width: 2496px; height: 1px;">
           <div class="container-xxl flex-grow-1 container-p-y">
 
-    For Receive/Release page  <a href="index.html">Click here
+    For Receive/Release page  <a href="index.php">Click here
     <i class="mdi mdi-account mdi-36px"></i>
     <!-- <p class="icon-name text-capitalize text-truncate mb-0 mt-2">Admin</p> -->
   </a>
