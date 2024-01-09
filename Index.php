@@ -129,9 +129,9 @@
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-Release" role="tabpanel" aria-labelledby="pills-Release-tab">
-            <form id="formAuthentication" class="mb-3" action="..vertical-menu-template/index.html" method="POST">
+            <form id="formAuthentication" class="mb-3" action="DJ_Release.php" method="POST">
               <div class="form-floating form-floating-outline mb-3">
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="">
+                <select class="form-select" id="exampleFormControlSelect1" aria-label="" name="product_line1">
                   <option selected>Open this select menu</option>
                   <option value="Digital">Digital</option>
                   <option value="Offset">Offset</option>
@@ -147,7 +147,7 @@
                 <label for="exampleFormControlSelect1">Product Line</label>
               </div>
               <div class="form-floating form-floating-outline mb-3">
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="">
+                <select class="form-select" id="exampleFormControlSelect1" aria-label="" name="received_by1">
                   <option selected>Open this select menu</option>
                   <option value="Ruhul_Khan">Ruhul Khan</option>
                   <option value="Shahabuddin">Shahabuddin</option>
@@ -173,7 +173,7 @@
                 <label for="exampleFormControlSelect1">Released By</label>
               </div>
               <div class="form-floating form-floating-outline mb-3">
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="">
+                <select class="form-select" id="exampleFormControlSelect1" aria-label="" name="remarks">
                   <option selected>Open this select menu</option>
                   <option value="VIPS">VIPS</option>
                   <option value="PAS">PAS</option>
@@ -203,13 +203,13 @@
                 <label for="exampleFormControlSelect1">Design Process</label>
               </div>
               <div class="form-floating form-floating-outline mb-3">
-                <textarea class="form-control" id="textarea" placeholder="Input DJ Number"></textarea>
+                <textarea class="form-control" id="textarea" placeholder="Input DJ Number" name="dj_number1"></textarea>
     
                 <style id="css-style"></style>
     
                 
                         </div>
-                          <button class="btn btn-primary d-grid w-100">
+                          <button class="btn btn-primary d-grid w-100" input type="submit" name="dj_release" value="dj_release">
                             Submit Orders
                           </button>
                           <!-- <button class="btn btn-outline-primary waves-effect" type="button">Track Orders</button> -->

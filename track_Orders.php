@@ -201,7 +201,10 @@ require 'link.php';
           </tr>
         </thead>
         <?php 
-							 	$stmt = $conn->prepare("SELECT * FROM dj_receive_table, oracle_data WHERE DJ_No= Discrete_Job ");
+							 	$stmt = $conn->prepare("SELECT dj_receive_table.*, oracle_data.*, dj_release_table.*
+                 FROM dj_receive_table
+                 INNER JOIN oracle_data ON dj_receive_table.id = oracle_data.id
+                 LEFT JOIN dj_release_table ON dj_receive_table.id = dj_release_table.id");
 							 
                  $stmt->execute();
 
@@ -229,16 +232,16 @@ require 'link.php';
       </div>
       <div class="modal-body">
       
-            <h4>DJ Received Date: <?php echo $num['received_by']; ?></h4>
-            <h4>Received By</h4>
-            <h4>DJ</h4>
-            <h4>SoLine</h4>
-            <h4>Label Ref</h4>
-            <h4>RBO</h4>
-            <h4>Designed by</h4>
-            <h4>Remarks_Design</h4>
-            <h4>Design Date</h4>
-            <h4>Coustomer Name</h4>
+            <h4>DJ Received Date: <?php echo $num['dj_receive_table.received_at']; ?></h4>
+            <h4>Received By: <?php echo $num['dj_receive_table.received_by']; ?></h4>
+            <h4>DJ: <?php echo $num['dj_receive_table.DJ_No']; ?></h4>
+            <h4>SoLine: <?php echo $num['oracle_data.SO_Line']; ?></h4>
+            <h4>Label Ref: <?php echo $num['oracle_data.Item']; ?></h4>
+            <h4>RBO: <?php echo $num['oracle_data.RBO']; ?></h4>
+            <h4>Designed by: <?php echo $num['dj_release_table.received_by']; ?></h4>
+            <h4>Remarks_Design: <?php echo $num['dj_release_table.received_by']; ?></h4>
+            <h4>Design Date: <?php echo $num['dj_release_table.received_by']; ?></h4>
+            <!-- <h4>Customer Name: <?php echo $num['Customer']; ?></h4> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -264,12 +267,12 @@ require 'link.php';
             
             <td><?php echo $num['RBO']; ?></td>
             <td>
-            <?php echo $num['DJ_No']; ?>
+            <?php echo $num['released_by']; ?>
             </td>
-            <td><?php echo $num['DJ_No']; ?></td>
+            <td><?php echo $num['Remarks']; ?></td>
             
             <td>
-            <?php echo $num['DJ_No']; ?>
+            <?php echo $num['released_at']; ?>
             </td>
             <td>
             <?php echo $num['Customer']; ?>
