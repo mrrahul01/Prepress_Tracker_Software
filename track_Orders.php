@@ -232,15 +232,17 @@ require 'link.php';
       </div>
       <div class="modal-body">
       
-            <h4>DJ Received Date: <?php echo $num['dj_receive_table.received_at']; ?></h4>
-            <h4>Received By: <?php echo $num['dj_receive_table.received_by']; ?></h4>
-            <h4>DJ: <?php echo $num['dj_receive_table.DJ_No']; ?></h4>
-            <h4>SoLine: <?php echo $num['oracle_data.SO_Line']; ?></h4>
-            <h4>Label Ref: <?php echo $num['oracle_data.Item']; ?></h4>
-            <h4>RBO: <?php echo $num['oracle_data.RBO']; ?></h4>
-            <h4>Designed by: <?php echo $num['dj_release_table.received_by']; ?></h4>
-            <h4>Remarks_Design: <?php echo $num['dj_release_table.received_by']; ?></h4>
-            <h4>Design Date: <?php echo $num['dj_release_table.received_by']; ?></h4>
+            <h4>DJ Received Date: <?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['received_at']));
+    echo $formatted_time ?></h4>
+            <h4>Received By: <?php echo $num['received_by']; ?></h4>
+            <h4>DJ: <?php echo $num['Discrete_Job']; ?></h4>
+            <h4>SoLine: <?php echo $num['SO_Line']; ?></h4>
+            <h4>Label Ref: <?php echo $num['Item']; ?></h4>
+            <h4>RBO: <?php echo $num['RBO']; ?></h4>
+            <h4>Designed by: <?php echo $num['released_by']; ?></h4>
+            <h4>Remarks_Design: <?php echo $num['Remarks']; ?></h4>
+            <h4>Design Date: <?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['released_at']));
+    echo $formatted_time ?></h4>
             <!-- <h4>Customer Name: <?php echo $num['Customer']; ?></h4> -->
       </div>
       <div class="modal-footer">
@@ -258,7 +260,7 @@ require 'link.php';
             <td>
             <?php echo $num['received_by']; ?>
             </td>
-            <td><?php echo $num['DJ_No']; ?></td>
+            <td><?php echo $num['Discrete_Job']; ?></td>
             
             <td>
             <?php echo $num['SO_Line']; ?>
@@ -272,7 +274,8 @@ require 'link.php';
             <td><?php echo $num['Remarks']; ?></td>
             
             <td>
-            <?php echo $num['released_at']; ?>
+            <?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['released_at']));
+    echo $formatted_time ?>
             </td>
             <td>
             <?php echo $num['Customer']; ?>
