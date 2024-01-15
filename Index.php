@@ -130,7 +130,7 @@
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-Release" role="tabpanel" aria-labelledby="pills-Release-tab">
             <form id="formAuthentication" class="mb-3" action="DJ_Release.php" method="POST">
-              <div class="form-floating form-floating-outline mb-3">
+              <!-- <div class="form-floating form-floating-outline mb-3">
                 <select class="form-select" id="exampleFormControlSelect1" aria-label="" name="product_line1">
                   <option selected>Open this select menu</option>
                   <option value="Digital">Digital</option>
@@ -145,7 +145,7 @@
                   <option value="Digital_Shortage">Digital_Shortage</option>
                 </select>
                 <label for="exampleFormControlSelect1">Product Line</label>
-              </div>
+              </div> -->
               <div class="form-floating form-floating-outline mb-3">
                 <select class="form-select" id="exampleFormControlSelect1" aria-label="" name="received_by1">
                   <option selected>Open this select menu</option>

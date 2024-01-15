@@ -4,7 +4,7 @@ require 'link.php';
 
 // Define variables
 $dj_numbers = $_POST['dj_number1'];; // Your multi-line string
-$product_line = ($_POST['product_line1']);
+// $product_line = ($_POST['product_line1']);
 $received_by = $_POST['received_by1'];
 $remarks = $_POST['remarks'];
 
@@ -15,13 +15,13 @@ $numbers = explode("\r\n", $dj_numbers);
 foreach ($numbers as $number) {
 
     // Prepare SQL query
-    $sql = "INSERT INTO dj_release_table (DJ_No, product_line, released_by, Remarks) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO dj_release_table (DJ_No, released_by, Remarks) VALUES (?, ?, ?)";
 
     // Prepare statement
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssss", $number, $product_line, $received_by, $remarks);
+    $stmt->bind_param("sss", $number, $received_by, $remarks);
 
     // Execute statement
     $stmt->execute();

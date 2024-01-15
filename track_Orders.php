@@ -185,13 +185,14 @@ require 'link.php';
       <table class="table">
         <thead style="position: sticky;">
           <tr>
-            <th>Actions</th>
+            <!-- <th>Actions</th> -->
             <th>DJ Received Date</th>
             <th>Received By</th>
             <th>DJ</th>
             <th>SoLine</th>
             <th>Label Ref</th>
             <th>RBO</th>
+            <th>Product Line</th>
             <th>Designed by</th>
             <th>Remarks_Design</th>
             <th>Design Date</th>
@@ -201,12 +202,11 @@ require 'link.php';
           </tr>
         </thead>
         <?php 
-							 	$stmt = $conn->prepare("SELECT dj_receive_table.*, oracle_data.*, dj_release_table.*
+							 	$stmt = $conn->prepare("SELECT dj_receive_table.received_at, dj_receive_table.received_by, dj_receive_table.product_line, dj_receive_table.DJ_No, oracle_data.SO_Line, oracle_data.Item, oracle_data.RBO, dj_release_table.released_by, dj_release_table.Remarks,dj_release_table.released_at, oracle_data.Customer
                  FROM dj_receive_table
                  INNER JOIN oracle_data ON dj_receive_table.id = oracle_data.id
                  LEFT JOIN dj_release_table ON dj_receive_table.id = dj_release_table.id");
-							 
-                 $stmt->execute();
+            $stmt->execute();
 
                  // Fetch results and access data:
                  $result = $stmt->get_result();
@@ -217,50 +217,14 @@ require 'link.php';
           <tr class="table-default">
           
             
-            <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">  
-            Deatils
- </button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      
-            <h4>DJ Received Date: <?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['received_at']));
-    echo $formatted_time ?></h4>
-            <h4>Received By: <?php echo $num['received_by']; ?></h4>
-            <h4>DJ: <?php echo $num['Discrete_Job']; ?></h4>
-            <h4>SoLine: <?php echo $num['SO_Line']; ?></h4>
-            <h4>Label Ref: <?php echo $num['Item']; ?></h4>
-            <h4>RBO: <?php echo $num['RBO']; ?></h4>
-            <h4>Designed by: <?php echo $num['released_by']; ?></h4>
-            <h4>Remarks_Design: <?php echo $num['Remarks']; ?></h4>
-            <h4>Design Date: <?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['released_at']));
-    echo $formatted_time ?></h4>
-            <!-- <h4>Customer Name: <?php echo $num['Customer']; ?></h4> -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-</td>
+ 
             
             <td><?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['received_at']));
     echo $formatted_time ?></td>
             <td>
             <?php echo $num['received_by']; ?>
             </td>
-            <td><?php echo $num['Discrete_Job']; ?></td>
+            <td><?php echo $num['DJ_No']; ?></td>
             
             <td>
             <?php echo $num['SO_Line']; ?>
@@ -268,29 +232,38 @@ require 'link.php';
             <td><?php echo $num['Item']; ?></td>
             
             <td><?php echo $num['RBO']; ?></td>
+            
+            <td><?php echo $num['product_line']; ?></td>
             <td>
-            <?php echo $num['released_by']; ?>
+            <?php // Check if released_at is empty and display appropriate message
+if (empty($num['released_at'])) {
+    echo "Design pending";
+} else {echo $num['released_by']; }?>
             </td>
-            <td><?php echo $num['Remarks']; ?></td>
+            <td><?php // Check if released_at is empty and display appropriate message
+if (empty($num['released_at'])) {
+    echo "Design pending";
+} else {echo $num['Remarks']; }?></td>
             
             <td>
-            <?php $formatted_time = date('Y-m-d </br> h:i A', strtotime($num['released_at']));
-    echo $formatted_time ?>
+            <?php
+// Check if released_at is empty and display appropriate message
+if (empty($num['released_at'])) {
+    echo "Design pending";
+} else {
+    // Format the release time only if released_at is not empty
+    $formatted_time = date('Y-m-d <br> h:i A', strtotime($num['released_at']));
+    echo $formatted_time;
+}
+?>
             </td>
             <td>
             <?php echo $num['Customer']; ?>
             </td>
+
           </tr>
          
-         
-          
-          
-          
-         
-          
-         
-          
-        </tbody>
+  </tbody>
         <?php 
 						    
 						    } ?>
