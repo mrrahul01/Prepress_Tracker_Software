@@ -207,6 +207,7 @@ require 'link.php';
 							 	$stmt = $conn->prepare("SELECT 
                  dj_receive_table.received_at,
                  dj_receive_table.received_by,
+                 dj_receive_table.product_line,
                  dj_receive_table.DJ_No,
                  oracle_data.SO_Line,
                  oracle_data.Item,
@@ -214,15 +215,15 @@ require 'link.php';
                  oracle_data.Customer,
                  oracle_data.Quantity,
                  
-                --  COALESCE(dj_receive_table.product_line, oracle_data.Product_Line) AS product_line,
+                 COALESCE(dj_receive_table.product_line, oracle_data.Product_Line) AS product_line,
                  dj_release_table.released_by,
                  dj_release_table.released_at,
                  dj_release_table.Remarks,
-                 oracle_data.Product_Line,
+                 
                  oracle_data.Quantity
              FROM oracle_data
              LEFT JOIN dj_receive_table ON oracle_data.Discrete_Job = dj_receive_table.DJ_No
-             LEFT JOIN dj_release_table ON dj_receive_table.id = dj_release_table.id
+             LEFT JOIN dj_release_table ON dj_receive_table.id = dj_release_table.dj_receive_id  
              ORDER BY dj_receive_table.received_at DESC;
              ");
             $stmt->execute();
@@ -277,9 +278,9 @@ if (empty($num['RBO'])) {
 } else {echo $num['RBO']; }?></td>
             
             <td><?php // Check if released_at is empty and display appropriate message
-if (empty($num['Product_Line'])) {
+if (empty($num['product_line'])) {
     echo "Not received";
-} else {echo $num['Product_Line']; }?></td>
+} else {echo $num['product_line']; }?></td>
             <td>
             <?php // Check if released_at is empty and display appropriate message
 if (empty($num['released_by'])) {

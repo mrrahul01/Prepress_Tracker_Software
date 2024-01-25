@@ -3,8 +3,7 @@
 require 'link.php';
 
 // Define variables
-$dj_numbers = $_POST['dj_number1'];; // Your multi-line string
-// $product_line = ($_POST['product_line1']);
+$dj_numbers = $_POST['dj_number1'];
 $received_by = $_POST['received_by1'];
 $remarks = $_POST['remarks'];
 
@@ -14,27 +13,36 @@ $numbers = explode("\r\n", $dj_numbers);
 // Loop through each DJ number
 foreach ($numbers as $number) {
 
-    // Prepare SQL query
-    $sql = "INSERT INTO dj_release_table (DJ_No, released_by, Remarks) VALUES (?, ?, ?)";
+    // Query dj_receive_table to get the corresponding id
+    $query = "SELECT id FROM dj_receive_table WHERE DJ_No = '$number'";
+    $result = mysqli_query($conn, $query);
 
-    // Prepare statement
-    $stmt = $conn->prepare($sql);
+    if ($row = mysqli_fetch_assoc($result)) {
+        $dj_receive_id = $row['id'];
 
-    // Bind parameters
-    $stmt->bind_param("sss", $number, $received_by, $remarks);
+        // Prepare SQL query
+        $sql = "INSERT INTO dj_release_table (DJ_No, released_by, Remarks, dj_receive_id) VALUES (?, ?, ?, ?)";
 
-    // Execute statement
-    $stmt->execute();
+        // Prepare statement
+        $stmt = $conn->prepare($sql);
 
-    // Get the auto-incremented ID
-    $id = $conn->insert_id;
+        // Bind parameters
+        $stmt->bind_param("ssss", $number, $received_by, $remarks, $dj_receive_id);
 
-    // Print the result
-    // echo "ID='" . $id . "', dj_numbers='" . $number . "' product_line ='" . $product_line . "' received_by ='" . $received_by . "'" . PHP_EOL;
-    header("Location: http://localhost/Prepress_Tracker_Software/Prepress_Tracker_Software/track_Orders.php");
+        // Execute statement
+        $stmt->execute();
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo "Invalid DJ_No: $number";
+    }
 }
 
 // Close connection
 $conn->close();
 
+// Redirect to another page
+header("Location: http://localhost/Prepress_Tracker_Software/Prepress_Tracker_Software/track_Orders.php");
+exit();
 ?>
