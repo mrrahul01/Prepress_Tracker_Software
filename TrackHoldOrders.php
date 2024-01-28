@@ -167,13 +167,15 @@ require 'link.php';
          
 <div class="card-body">
 <div class="native-scrollbar native-scrollbar-ltr native-scrollbar-x" style="width: 1000px; left: 45.5556px; top: 432px;"><div style="width: 2496px; height: 1px;">
-          <div class="container-xxl flex-grow-1 container-p-y">
+          
+
+<div class="container-xxl flex-grow-1 container-p-y">
 
     For Receive/Release page  <a href="index.php">Click here
     <i class="mdi mdi-account mdi-36px"></i>
     <!-- <p class="icon-name text-capitalize text-truncate mb-0 mt-2">Admin</p> -->
   </a>
-  For See Hold Orders  <a href="TrackHoldOrders.php">Click here
+  For See all Orders Details <a href="track_Orders.php">Click here
     <i class="mdi mdi-account mdi-36px"></i>
     <!-- <p class="icon-name text-capitalize text-truncate mb-0 mt-2">Admin</p> -->
   </a>
@@ -198,9 +200,9 @@ require 'link.php';
             <th>Label Ref</th>
             <th>RBO</th>
             <th>Product Line</th>
-            <th>Designed by</th>
-            <th>Remarks_Design</th>
-            <th>Design Date</th>
+            <th>Hold by</th>
+            <th>Hold Reason</th>
+            <th>Hold Date</th>
             <th>Coustomer Name</th>
             <th>Quantity</th>
             
@@ -220,14 +222,14 @@ require 'link.php';
                  oracle_data.Quantity,
                  
                  COALESCE(dj_receive_table.product_line, oracle_data.Product_Line) AS product_line,
-                 dj_release_table.released_by,
-                 dj_release_table.released_at,
-                 dj_release_table.Remarks,
+                 dj_hold_table.hold_by,
+                 dj_hold_table.hold_at,
+                 dj_hold_table.Remarks,
                  
                  oracle_data.Quantity
              FROM oracle_data
-             LEFT JOIN dj_receive_table ON oracle_data.Discrete_Job = dj_receive_table.DJ_No
-             LEFT JOIN dj_release_table ON dj_receive_table.id = dj_release_table.dj_receive_id  
+             JOIN dj_receive_table ON oracle_data.Discrete_Job = dj_receive_table.DJ_No
+             JOIN dj_hold_table ON dj_receive_table.id = dj_hold_table.dj_receive_id  
              ORDER BY dj_receive_table.received_at DESC;
              ");
             $stmt->execute();
@@ -287,9 +289,9 @@ if (empty($num['product_line'])) {
 } else {echo $num['product_line']; }?></td>
             <td>
             <?php // Check if released_at is empty and display appropriate message
-if (empty($num['released_by'])) {
+if (empty($num['hold_by'])) {
     echo "Design pending";
-} else {echo $num['released_by']; }?>
+} else {echo $num['hold_by']; }?>
             </td>
             <td><?php // Check if released_at is empty and display appropriate message
 if (empty($num['Remarks'])) {
@@ -299,11 +301,11 @@ if (empty($num['Remarks'])) {
             <td>
             <?php
 // Check if released_at is empty and display appropriate message
-if (empty($num['released_at'])) {
+if (empty($num['hold_at'])) {
     echo "Design pending";
 } else {
     // Format the release time only if released_at is not empty
-    $formatted_time = date('Y-m-d <br> h:i A', strtotime($num['released_at']));
+    $formatted_time = date('Y-m-d <br> h:i A', strtotime($num['hold_at']));
     echo $formatted_time;
 }
 ?>

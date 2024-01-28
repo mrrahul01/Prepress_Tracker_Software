@@ -124,7 +124,7 @@
             <button class="nav-link" id="pills-Receive-tab" data-bs-toggle="pill" data-bs-target="#pills-Receive" type="button" role="tab" aria-controls="pills-Receive" aria-selected="true">Receive</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-Designer Login" aria-selected="false">Designer Login</button>
+            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-Designer Login" aria-selected="false">Hold</button>
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -281,7 +281,7 @@
           <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             
         
-                <form id="formAuthentication" class="mb-3" action="..vertical-menu-template/index.html" method="POST">
+                <!-- <form id="formAuthentication" class="mb-3" action="..vertical-menu-template/index.html" method="POST">
                   <div class="form-floating form-floating-outline mb-3">
                     <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus>
                     <label for="email">Email or Username</label>
@@ -311,14 +311,63 @@
                   <button class="btn btn-primary d-grid w-100">
                     Sign in
                   </button>
-                </form>
+                </form> -->
         
-                <p class="text-center mt-2">
+                <!-- <p class="text-center mt-2">
                   <span>New on our platform?</span>
                   <a href="auth-register-cover.html">
                     <span>Create an account</span>
                   </a>
-                </p>
+                </p> -->
+
+                <form id="formAuthentication" class="mb-3" action="DJ_Release_hold.php" method="POST">
+              
+              <div class="form-floating form-floating-outline mb-3">
+                <select class="form-select" id="exampleFormControlSelect1" aria-label="" name="hold_by">
+                  <option selected>Open this select menu</option>
+                  <option value="Ruhul_Khan">Ruhul Khan</option>
+                  <option value="Shahabuddin">Shahabuddin</option>
+                  <option value="Shiblu">Shiblu</option>
+                  <option value="Ikbal">Ikbal</option>
+                  <option value="Riad">Riad</option>
+                  <option value="Kamrul">Kamrul</option>
+                  <option value="Apurbo">Apurbo</option>
+                  <option value="Nazrul">Nazrul</option>
+                  <option value="Masud">Masud</option>
+                  <option value="Jasim">Jasim</option>
+                  <option value="Hasan">Hasan</option>
+                  <option value="Shamim Miah">Shamim Miah</option>
+                  <option value="Rasel">Rasel</option>
+                  <option value="Hasib">Hasib</option>
+                  <option value="Khorshed">Khorshed</option>
+                  <option value="Sohel">Sohel</option>
+                  <option value="Nechhar">Nechhar</option>
+                  <option value="Mamun">Mamun</option>
+                  <option value="Shamim">Shamim</option>
+                  <option value="Habib_shadek">Habib shadek</option>
+                </select>
+                <label for="exampleFormControlSelect1">Hold By</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-3">
+              <div>
+          <label for="defaultFormControlInput" class="form-label">Hold Reason</label>
+          <input type="text" class="form-control" id="defaultFormControlInput" placeholder="Write Hold Reason" aria-describedby="defaultFormControlHelp" name="hold_reason">
+          
+        </div>
+        </div>
+              <div class="form-floating form-floating-outline mb-3">
+                <textarea class="form-control" id="textarea" placeholder="Input DJ Number" name="dj_number1"></textarea>
+    
+                <style id="css-style"></style>
+    
+                
+                        </div>
+                          <button class="btn btn-primary d-grid w-100" input type="submit" name="dj_hold" value="dj_hold">
+                            Submit Orders
+                          </button>
+                          <!-- <button class="btn btn-outline-primary waves-effect" type="button">Track Orders</button> -->
+                        
+                        </form>
         
                 
         
